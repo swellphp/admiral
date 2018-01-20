@@ -1,5 +1,35 @@
 {
-    "require-dev": {
-        "laravel/homestead": "^7.0"
+  "name": "swellphp/admiral",
+  "description": "A PHP Command Bus with Command Handling",
+  "type": "library",
+  "keywords": [
+    "swellphp",
+    "swellphp admiral",
+    "admiral",
+    "command bus",
+    "cqrs"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {
+    "laravel/homestead": "^7.0",
+    "phpunit/phpunit": "~5.0"
+  },
+  "autoload": {
+    "classmap": [
+    ],
+    "psr-4": {
+      "SwellPhp\\Admiral\\": "src/Admiral/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SwellPhp\\Admiral\\Test\\": "tests/Admiral/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
 }
