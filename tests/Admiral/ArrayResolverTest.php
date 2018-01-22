@@ -16,9 +16,11 @@ namespace SwellPhp\Admiral\Test;
 
 use SwellPhp\Admiral\ArrayResolver;
 use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+use SwellPhp\Admiral\Exception\CommandNotRegistered;
 use SwellPhp\Admiral\Exception\InvalidCommandHandler;
 use SwellPhp\Admiral\Test\Examples\Command\CommandWithoutHandler;
 use SwellPhp\Admiral\Test\Examples\Command\DraftNewBlogPost;
+use SwellPhp\Admiral\Test\Examples\Command\NotRegisteredCommand;
 use SwellPhp\Admiral\Test\Examples\Command\SomeCommand;
 
 
@@ -74,6 +76,21 @@ class ArrayResolverTest extends TestCase
     {
         $handler = $this->resolver->getHandler(
             new SomeCommand()
+        );
+    }
+
+
+    /**
+     * Tests that it throws an exception when attempting
+     * to retrieve a handler for an unregistered command.
+     *
+     * @test
+     * @expectedException \SwellPhp\Admiral\Exception\CommandNotRegistered
+     */
+    public function it_throws_exception_if_command_is_not_registered()
+    {
+        $handlerForNonExistingCommand = $this->resolver->getHandler(
+            new NotRegisteredCommand()
         );
     }
 

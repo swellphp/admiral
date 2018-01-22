@@ -16,6 +16,7 @@
 namespace SwellPhp\Admiral;
 
 use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+use SwellPhp\Admiral\Exception\CommandNotRegistered;
 use SwellPhp\Admiral\Exception\InvalidCommandHandler;
 
 /**
@@ -52,6 +53,8 @@ final class ArrayResolver implements CommandHandlerResolver
      */
     public function getHandler($command): CommandHandler
     {
+        $this->assertCommandIsRegistered(get_class($command));
+
         $handler = $this->handlers[get_class($command)];
 
         try {
@@ -62,6 +65,20 @@ final class ArrayResolver implements CommandHandlerResolver
             );
         }
         return $handler;
+    }
+
+
+    /**
+     * Asserts the command is registered.
+     *
+     * @param string $command
+     * @throws CommandNotRegistered
+     */
+    protected function assertCommandIsRegistered(string $command): void
+    {
+        if (!array_key_exists($command, $this->handlers)) {
+            throw new CommandNotRegistered($command);
+        }
     }
 
 
