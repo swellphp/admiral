@@ -13,15 +13,16 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Test\Examples\Handler;
+namespace SwellPhp\Admiral\Example\Handler;
+
+use SwellPhp\Admiral\CommandHandler;
 
 
 /**
- * An example command handler which does not implement the handler contract
- * to be used for testing.
+ * Example command handler for testing.
  *
  */
-final class HandlerDoesNotImplementContract
+final class PublishBlogPost implements CommandHandler
 {
 
 }
