@@ -53,7 +53,7 @@ final class DraftNewBlogPost
      *
      * @return string
      */
-    public function getPostTitle() :string
+    public function getPostTitle(): string
     {
         return $this->postTitle;
     }
@@ -64,7 +64,7 @@ final class DraftNewBlogPost
      *
      * @return string
      */
-    public function getPostContent() : string
+    public function getPostContent(): string
     {
         return $this->postContent;
     }

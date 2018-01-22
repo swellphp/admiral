@@ -21,4 +21,18 @@ namespace SwellPhp\Admiral\Test;
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
 
+    /**
+     * @var array
+     */
+    protected $handlers = [];
+
+
+    /**
+     * Sets up the test.
+     *
+     */
+    public function setUp()
+    {
+        $this->handlers = include __DIR__ . '/Examples/command_handlers.php';
+    }
 }
