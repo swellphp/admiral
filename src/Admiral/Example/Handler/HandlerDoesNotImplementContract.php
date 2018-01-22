@@ -18,7 +18,7 @@ namespace SwellPhp\Admiral\Example\Handler;
 
 /**
  * An example command handler which does not implement the handler contract
- * to be used for testing.
+ * to be used for testing and documentation purposes.
  *
  */
 final class HandlerDoesNotImplementContract

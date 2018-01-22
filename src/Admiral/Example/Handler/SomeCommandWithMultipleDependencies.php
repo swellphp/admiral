@@ -20,7 +20,8 @@ use SwellPhp\Admiral\Example\Handler\Dependency\ListOfPosts;
 
 
 /**
- * Example command handler with multiple dependencies.
+ * Example command handler with multiple dependencies
+ * for testing and documentation purposes.
  *
  */
 final class SomeCommandWithMultipleDependencies implements CommandHandler
@@ -49,7 +50,7 @@ final class SomeCommandWithMultipleDependencies implements CommandHandler
      *
      * @param ListOfPosts $postList
      * @param string      $stringDependency
-     * @param int      $numericDependency
+     * @param int         $numericDependency
      */
     public function __construct(
         ListOfPosts $postList,

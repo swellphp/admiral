@@ -19,7 +19,8 @@ use SwellPhp\Admiral\CommandHandler;
 
 
 /**
- * Example command handler for testing.
+ * Example command handler for testing and
+ * documentation purposes.
  *
  */
 final class PublishBlogPost implements CommandHandler

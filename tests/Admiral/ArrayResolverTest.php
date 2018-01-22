@@ -16,15 +16,15 @@ namespace SwellPhp\Admiral\Test;
 
 use SwellPhp\Admiral\ArrayResolver;
 use SwellPhp\Admiral\CommandHandler;
-use SwellPhp\Admiral\Example\Handler\Dependency\ListOfPosts;
-use SwellPhp\Admiral\Example\Handler\SomeCommandWithDependencies;
-use SwellPhp\Admiral\Example\Handler\SomeCommandWithMultipleDependencies;
-use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+use SwellPhp\Admiral\Example\Command\SomeCommand;
 use SwellPhp\Admiral\Exception\CommandNotRegistered;
-use SwellPhp\Admiral\Example\Command\CommandWithoutHandler;
+use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
 use SwellPhp\Admiral\Example\Command\DraftNewBlogPost;
 use SwellPhp\Admiral\Example\Command\NotRegisteredCommand;
-use SwellPhp\Admiral\Example\Command\SomeCommand;
+use SwellPhp\Admiral\Example\Command\CommandWithoutHandler;
+use SwellPhp\Admiral\Example\Handler\Dependency\ListOfPosts;
+use SwellPhp\Admiral\Example\Handler\SomeCommandWithSingleDependency;
+use SwellPhp\Admiral\Example\Handler\SomeCommandWithMultipleDependencies;
 
 
 /**
@@ -98,7 +98,7 @@ class ArrayResolverTest extends TestCase
 
 
     /**
-     * Test that it can resolve command handler's dependencies.
+     * Test that it can resolve command handler's dependency.
      *
      * @test
      */
@@ -106,7 +106,7 @@ class ArrayResolverTest extends TestCase
     {
         $resolver = new ArrayResolver([
             SomeCommand::class => [
-                SomeCommandWithDependencies::class,
+                SomeCommandWithSingleDependency::class,
                 [
                     new ListOfPosts()
                 ]

@@ -20,10 +20,11 @@ use SwellPhp\Admiral\CommandHandler;
 use SwellPhp\Admiral\Example\Handler\Dependency\ListOfPosts;
 
 /**
- * Example command handler with dependencies.
+ * Example command handler with a dependency
+ * for testing and documentation purposes.
  *
  */
-final class SomeCommandWithDependencies implements CommandHandler
+final class SomeCommandWithSingleDependency implements CommandHandler
 {
 
     /**

@@ -17,7 +17,8 @@ namespace SwellPhp\Admiral\Example\Command;
 
 
 /**
- * Just a command which is not registered for testing purposes.
+ * Just a command which is not registered for testing and
+ * documentation purposes.
  *
  */
 final class NotRegisteredCommand

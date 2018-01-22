@@ -21,6 +21,7 @@ use SwellPhp\Admiral\CommandHandler;
 /**
  * The command handler for drafting a new blog post.
  *
+ * For testing and documentation purposes.
  */
 final class DraftNewBlogPost implements CommandHandler
 {

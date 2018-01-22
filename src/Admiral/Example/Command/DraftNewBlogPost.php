@@ -17,7 +17,7 @@ namespace SwellPhp\Admiral\Example\Command;
 
 
 /**
- * Just an example command for testing.
+ * Just an example command for testing and documentation.
  *
  */
 final class DraftNewBlogPost
