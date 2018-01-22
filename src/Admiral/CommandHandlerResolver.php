@@ -29,5 +29,5 @@ interface CommandHandlerResolver
      * @param object $command
      * @return CommandHandler
      */
-    public function getHandler(object $command) : CommandHandler ;
+    public function getHandler($command): CommandHandler;
 }

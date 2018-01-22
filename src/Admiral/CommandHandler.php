@@ -15,7 +15,10 @@
 
 namespace SwellPhp\Admiral;
 
-
+/**
+ * Contract for command handlers.
+ * 
+ */
 interface CommandHandler
 {
 

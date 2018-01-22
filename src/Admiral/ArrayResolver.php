@@ -23,4 +23,43 @@ namespace SwellPhp\Admiral;
 final class ArrayResolver implements CommandHandlerResolver
 {
 
+    /**
+     * @var array
+     */
+    protected $handlers;
+
+
+    /**
+     * ArrayResolver constructor.
+     *
+     * @param array $handlers
+     */
+    public function __construct(array $handlers)
+    {
+        $this->setHandlers($handlers);
+    }
+
+
+    /**
+     * Gets the handler.
+     *
+     * @param object $command
+     * @return CommandHandler
+     */
+    public function getHandler($command): CommandHandler
+    {
+        $handler = $this->handlers[get_class($command)];
+        return new $handler();
+    }
+
+
+    /**
+     * Sets the Handlers.
+     *
+     * @param array $handlers
+     */
+    protected function setHandlers(array $handlers)
+    {
+        $this->handlers = $handlers;
+    }
 }
