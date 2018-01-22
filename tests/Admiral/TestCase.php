@@ -15,24 +15,10 @@
 
 namespace SwellPhp\Admiral\Test;
 
-
-
 /**
- * A test for the tests suite.
- *
+ * An extensible test case.
  */
-class TestForTests extends TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
 
-
-    /**
-     * it_knows_true_is_true
-     *
-     * @test
-     */
-    public function it_knows_true_is_true()
-    {
-        $true = true;
-        $this->assertTrue($true);
-    }
 }
