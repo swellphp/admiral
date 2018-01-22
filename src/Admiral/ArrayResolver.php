@@ -29,13 +29,13 @@ final class ArrayResolver implements CommandHandlerResolver
     /**
      * @var array
      */
-    protected $handlers;
+    protected $handlers = [];
 
 
     /**
      * @var array
      */
-    protected $handlersDependencies;
+    protected $handlersDependencies = [];
 
 
     /**
@@ -54,7 +54,6 @@ final class ArrayResolver implements CommandHandlerResolver
      *
      * @param object $command
      * @return CommandHandler
-     * @throws CommandHandlerNotFound
      */
     public function getHandler($command): CommandHandler
     {
@@ -62,31 +61,34 @@ final class ArrayResolver implements CommandHandlerResolver
 
         $handler = $this->handlers[get_class($command)];
 
-        try {
-/*            $dependencies = [];
-            if ($this->hasDependencies($handler)) {
-                $dependencies = $this->resolveDependencies($handler);
-            }*/
-            $handler = new $handler();
-        } catch (\Throwable $exception) {
-            throw new CommandHandlerNotFound(
-                "Handler not found for command: " . get_class($command)
-            );
+        $this->assertCommandHandlerExists($handler);
+
+        $dependencies = [];
+        if ($this->hasDependencies($handler)) {
+            $dependencies = $this->resolveDependencies($handler);
+            $handler = new $handler(...$dependencies);
         }
+        $handler = new $handler(...$dependencies);
+
         return $handler;
     }
 
 
-
+    /**
+     * Resolves the dependencies.
+     *
+     * @param string $commandHandler
+     * @return array
+     */
     protected function resolveDependencies(
         string $commandHandler
     ): array {
 
         $dependencies = [];
         foreach (
-            $this->handlersDependencies[$commandHandler] as $handlersDependency
+            $this->handlersDependencies[$commandHandler] as $handlerDependencies
         ) {
-            $dependencies[] = $handlersDependency;
+            $dependencies[] = $handlerDependencies;
         }
         return $dependencies;
     }
@@ -119,6 +121,20 @@ final class ArrayResolver implements CommandHandlerResolver
 
 
     /**
+     * Asserts that the command handler exists.
+     *
+     * @param string $commandHandler
+     * @throws CommandHandlerNotFound
+     */
+    protected function assertCommandHandlerExists(string $commandHandler) : void
+    {
+        if (! class_exists($commandHandler)) {
+            throw new CommandHandlerNotFound($commandHandler);
+        }
+    }
+
+
+    /**
      * Sets the Handlers.
      *
      * @param array $handlers
@@ -127,17 +143,15 @@ final class ArrayResolver implements CommandHandlerResolver
     {
         $registeredHandlers = [];
         foreach ($handlers as $command => $handler) {
-            if (is_array($handler)) {
-                foreach ($handler as $index => $dependencies) {
-                    $registeredHandlers[$command] = $index;
-                    $this->setHandlersDependencies($index, $dependencies);
-                }
-            } else {
+            if (! is_array($handler)) {
                 $registeredHandlers[$command] = $handler;
+            } else {
+                $registeredHandlers[$command] = $handler[0];
+                $this->setHandlersDependencies($handler[0], $handler[1]);
             }
+
         }
         $this->handlers = $registeredHandlers;
-
     }
 
 

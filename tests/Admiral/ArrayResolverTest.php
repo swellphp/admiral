@@ -15,6 +15,10 @@
 namespace SwellPhp\Admiral\Test;
 
 use SwellPhp\Admiral\ArrayResolver;
+use SwellPhp\Admiral\CommandHandler;
+use SwellPhp\Admiral\Example\Handler\Dependency\ListOfPosts;
+use SwellPhp\Admiral\Example\Handler\SomeCommandWithDependencies;
+use SwellPhp\Admiral\Example\Handler\SomeCommandWithMultipleDependencies;
 use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
 use SwellPhp\Admiral\Exception\CommandNotRegistered;
 use SwellPhp\Admiral\Example\Command\CommandWithoutHandler;
@@ -38,8 +42,7 @@ class ArrayResolverTest extends TestCase
      */
     public function it_can_get_command_handler_of_command()
     {
-        $resolver = $this->resolver;
-        $handler = $resolver->getHandler(
+        $handler = $this->resolver->getHandler(
             new DraftNewBlogPost('title', 'content')
         );
 
@@ -94,9 +97,53 @@ class ArrayResolverTest extends TestCase
     }
 
 
+    /**
+     * Test that it can resolve command handler's dependencies.
+     *
+     * @test
+     */
     public function it_resolve_handler_dependencies_from_instance_of_it()
     {
+        $resolver = new ArrayResolver([
+            SomeCommand::class => [
+                SomeCommandWithDependencies::class,
+                [
+                    new ListOfPosts()
+                ]
+            ]
+        ]);
+        $handler = $resolver->getHandler(new SomeCommand());
+        $this->assertInstanceOf(
+            CommandHandler::class,
+            $handler
+        );
+    }
 
+
+    /**
+     * Tests that it can resolve resolve multiple command handler dependencies.
+     *
+     * @test
+     */
+    public function it_resolves_multiple_dependencies()
+    {
+        $resolver = new ArrayResolver([
+            SomeCommand::class => [
+                SomeCommandWithMultipleDependencies::class,
+                [
+                    new ListOfPosts(),
+                    'string',
+                    100
+                ]
+            ]
+        ]);
+        $handler = $resolver->getHandler(
+            new SomeCommand()
+        );
+        $this->assertInstanceOf(
+            CommandHandler::class,
+            $handler
+        );
     }
 
 }
