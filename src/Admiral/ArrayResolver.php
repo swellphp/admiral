@@ -15,6 +15,8 @@
 
 namespace SwellPhp\Admiral;
 
+use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+
 /**
  * Resolves the command handlers and their dependencies
  * from an array.
@@ -45,11 +47,20 @@ final class ArrayResolver implements CommandHandlerResolver
      *
      * @param object $command
      * @return CommandHandler
+     * @throws CommandHandlerNotFound
      */
     public function getHandler($command): CommandHandler
     {
         $handler = $this->handlers[get_class($command)];
-        return new $handler();
+
+        try {
+            $handler = new $handler();
+        } catch (\Throwable $exception) {
+            throw new CommandHandlerNotFound(
+                "Handler not found for command: " . get_class($command)
+            );
+        }
+        return $handler;
     }
 
 

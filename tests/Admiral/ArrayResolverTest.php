@@ -15,6 +15,8 @@
 namespace SwellPhp\Admiral\Test;
 
 use SwellPhp\Admiral\ArrayResolver;
+use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+use SwellPhp\Admiral\Test\Examples\Command\CommandWithoutHandler;
 use SwellPhp\Admiral\Test\Examples\Command\DraftNewBlogPost;
 
 
@@ -33,7 +35,7 @@ class ArrayResolverTest extends TestCase
      */
     public function it_can_get_command_handler_of_command()
     {
-        $resolver = new ArrayResolver($this->handlers);
+        $resolver = $this->resolver;
         $handler = $resolver->getHandler(
             new DraftNewBlogPost('title', 'content')
         );
@@ -44,6 +46,19 @@ class ArrayResolverTest extends TestCase
         );
     }
 
+
+    /**
+     * Tests that an exception is thrown when a handler is not found.
+     *
+     * @test
+     * @expectedException \SwellPhp\Admiral\Exception\CommandHandlerNotFound
+     */
+    public function it_throws_exception_when_handler_is_not_found()
+    {
+        $handler = $this->resolver->getHandler(
+            new CommandWithoutHandler()
+        );
+    }
 
 }
 

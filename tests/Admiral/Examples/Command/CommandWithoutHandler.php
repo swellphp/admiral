@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 /**
  * This file is part of SwellPhp Admiral
  *
@@ -12,14 +13,13 @@
  * @version   1.0 Initial Release
  */
 
+namespace SwellPhp\Admiral\Test\Examples\Command;
 
-namespace SwellPhp\Admiral;
 
 /**
- * Contract for command handlers.
- *
+ * Just a command without a handler for testing.
  */
-interface CommandHandler
+final class CommandWithoutHandler
 {
 
 }

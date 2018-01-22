@@ -18,7 +18,8 @@
  */
 $commandHandlers = [
     \SwellPhp\Admiral\Test\Examples\Command\DraftNewBlogPost::class => \SwellPhp\Admiral\Test\Examples\Handler\DraftNewBlogPost::class,
-    \SwellPhp\Admiral\Test\Examples\Command\PublishBlogPost::class  => \SwellPhp\Admiral\Test\Examples\Handler\PublishBlogPost::class
+    \SwellPhp\Admiral\Test\Examples\Command\PublishBlogPost::class  => \SwellPhp\Admiral\Test\Examples\Handler\PublishBlogPost::class,
+    \SwellPhp\Admiral\Test\Examples\Command\CommandWithoutHandler::class => ''
 ];
 
 return $commandHandlers;

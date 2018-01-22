@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 /**
  * This file is part of SwellPhp Admiral
  *
@@ -12,14 +13,13 @@
  * @version   1.0 Initial Release
  */
 
+namespace SwellPhp\Admiral\Exception;
 
-namespace SwellPhp\Admiral;
 
 /**
- * Contract for command handlers.
- *
+ * Exception for when a command handler is not found.
  */
-interface CommandHandler
+final class CommandHandlerNotFound extends \Exception
 {
 
 }
