@@ -17,11 +17,10 @@ namespace SwellPhp\Admiral\Test;
 use SwellPhp\Admiral\ArrayResolver;
 use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
 use SwellPhp\Admiral\Exception\CommandNotRegistered;
-use SwellPhp\Admiral\Exception\InvalidCommandHandler;
-use SwellPhp\Admiral\Test\Examples\Command\CommandWithoutHandler;
-use SwellPhp\Admiral\Test\Examples\Command\DraftNewBlogPost;
-use SwellPhp\Admiral\Test\Examples\Command\NotRegisteredCommand;
-use SwellPhp\Admiral\Test\Examples\Command\SomeCommand;
+use SwellPhp\Admiral\Example\Command\CommandWithoutHandler;
+use SwellPhp\Admiral\Example\Command\DraftNewBlogPost;
+use SwellPhp\Admiral\Example\Command\NotRegisteredCommand;
+use SwellPhp\Admiral\Example\Command\SomeCommand;
 
 
 /**
@@ -45,7 +44,7 @@ class ArrayResolverTest extends TestCase
         );
 
         $this->assertInstanceOf(
-            \SwellPhp\Admiral\Test\Examples\Handler\DraftNewBlogPost::class,
+            \SwellPhp\Admiral\Example\Handler\DraftNewBlogPost::class,
             $handler
         );
     }
@@ -92,6 +91,12 @@ class ArrayResolverTest extends TestCase
         $handlerForNonExistingCommand = $this->resolver->getHandler(
             new NotRegisteredCommand()
         );
+    }
+
+
+    public function it_resolve_handler_dependencies()
+    {
+
     }
 
 }

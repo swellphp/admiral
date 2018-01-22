@@ -13,16 +13,13 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Test\Examples\Handler;
-
-use SwellPhp\Admiral\CommandHandler;
+namespace SwellPhp\Admiral\Example\Command;
 
 
 /**
- * Example command handler for testing.
- *
+ * Just a command for testing.
  */
-final class PublishBlogPost implements CommandHandler
+final class SomeCommand
 {
 
 }

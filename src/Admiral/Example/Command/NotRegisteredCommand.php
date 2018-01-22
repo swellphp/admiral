@@ -13,16 +13,14 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Test\Examples\Handler;
-
-use SwellPhp\Admiral\CommandHandler;
+namespace SwellPhp\Admiral\Example\Command;
 
 
 /**
- * The command handler for drafting a new blog post.
+ * Just a command which is not registered for testing purposes.
  *
  */
-final class DraftNewBlogPost implements CommandHandler
+final class NotRegisteredCommand
 {
 
 }

@@ -42,7 +42,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     public function setUp()
     {
-        $this->handlers = include __DIR__ . '/Examples/command_handlers.php';
+        $this->handlers = include __DIR__ . '/command_handlers.php';
         $this->resolver = new ArrayResolver($this->handlers);
     }
 }

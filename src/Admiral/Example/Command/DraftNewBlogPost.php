@@ -13,7 +13,7 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Test\Examples\Command;
+namespace SwellPhp\Admiral\Example\Command;
 
 
 /**

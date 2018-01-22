@@ -13,14 +13,15 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Test\Examples\Command;
+namespace SwellPhp\Admiral\Example\Handler;
 
 
 /**
- * Just a command which is not registered for testing purposes.
+ * An example command handler which does not implement the handler contract
+ * to be used for testing.
  *
  */
-final class NotRegisteredCommand
+final class HandlerDoesNotImplementContract
 {
 
 }

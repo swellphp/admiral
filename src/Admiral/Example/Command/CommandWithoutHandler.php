@@ -13,13 +13,13 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Test\Examples\Command;
+namespace SwellPhp\Admiral\Example\Command;
 
 
 /**
- * Just a command for testing.
+ * Just a command without a handler for testing.
  */
-final class SomeCommand
+final class CommandWithoutHandler
 {
 
 }
