@@ -16,7 +16,6 @@
 namespace SwellPhp\Admiral\Example\Handler;
 
 use SwellPhp\Admiral\CommandHandler;
-use SwellPhp\Admiral\Example\Handler\Dependencies\ListOfPosts;
 
 
 /**
