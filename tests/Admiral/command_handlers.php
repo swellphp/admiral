@@ -17,6 +17,7 @@
  * An array of commands with their handlers and dependencies.
  */
 $commandHandlers = [
+
     \SwellPhp\Admiral\Example\Command\DraftNewBlogPost::class =>
         \SwellPhp\Admiral\Example\Handler\DraftNewBlogPost::class,
 
