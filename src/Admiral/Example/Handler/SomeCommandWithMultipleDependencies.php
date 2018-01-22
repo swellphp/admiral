@@ -63,4 +63,36 @@ final class SomeCommandWithMultipleDependencies implements CommandHandler
     }
 
 
+    /**
+     * Gets the PostList.
+     *
+     * @return ListOfPosts
+     */
+    public function getPostList() : ListOfPosts
+    {
+        return $this->postList;
+    }
+
+
+    /**
+     * Gets the StringDependency.
+     *
+     * @return string
+     */
+    public function getStringDependency() :string
+    {
+        return $this->stringDependency;
+    }
+
+
+    /**
+     * Gets the NumericDependency.
+     *
+     * @return int
+     */
+    public function getNumericDependency() : int
+    {
+        return $this->numericDependency;
+    }
+
 }

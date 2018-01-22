@@ -117,6 +117,10 @@ class ArrayResolverTest extends TestCase
             CommandHandler::class,
             $handler
         );
+        $this->assertInstanceOf(
+            ListOfPosts::class,
+            $handler->getListOfPosts()
+        );
     }
 
 
@@ -143,6 +147,18 @@ class ArrayResolverTest extends TestCase
         $this->assertInstanceOf(
             CommandHandler::class,
             $handler
+        );
+        $this->assertInstanceOf(
+            ListOfPosts::class,
+            $handler->getPostList()
+        );
+        $this->assertEquals(
+            'string',
+            $handler->getStringDependency()
+        );
+        $this->assertEquals(
+            100,
+            $handler->getNumericDependency()
         );
     }
 

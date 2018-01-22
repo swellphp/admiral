@@ -42,4 +42,15 @@ final class SomeCommandWithSingleDependency implements CommandHandler
     {
         $this->listOfPosts = $listOfPosts;
     }
+
+
+    /**
+     * Gets the ListOfPosts.
+     *
+     * @return ListOfPosts
+     */
+    public function getListOfPosts(): ListOfPosts
+    {
+        return $this->listOfPosts;
+    }
 }
