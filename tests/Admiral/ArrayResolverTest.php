@@ -16,8 +16,10 @@ namespace SwellPhp\Admiral\Test;
 
 use SwellPhp\Admiral\ArrayResolver;
 use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+use SwellPhp\Admiral\Exception\InvalidCommandHandler;
 use SwellPhp\Admiral\Test\Examples\Command\CommandWithoutHandler;
 use SwellPhp\Admiral\Test\Examples\Command\DraftNewBlogPost;
+use SwellPhp\Admiral\Test\Examples\Command\SomeCommand;
 
 
 /**
@@ -57,6 +59,21 @@ class ArrayResolverTest extends TestCase
     {
         $handler = $this->resolver->getHandler(
             new CommandWithoutHandler()
+        );
+    }
+
+
+    /**
+     * Tests that an exception is thrown when a command handler
+     * does not implement to the handler contract.
+     *
+     * @test
+     * @expectedException \TypeError
+     */
+    public function it_throws_exception_if_handler_does_not_implement_contract()
+    {
+        $handler = $this->resolver->getHandler(
+            new SomeCommand()
         );
     }
 

@@ -16,6 +16,7 @@
 namespace SwellPhp\Admiral;
 
 use SwellPhp\Admiral\Exception\CommandHandlerNotFound;
+use SwellPhp\Admiral\Exception\InvalidCommandHandler;
 
 /**
  * Resolves the command handlers and their dependencies
