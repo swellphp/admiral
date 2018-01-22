@@ -17,7 +17,8 @@ namespace SwellPhp\Admiral\Example\Command;
 
 
 /**
- * Just a command without a handler for testing.
+ * Just a command without a handler for testing and example purposes.
+ *
  */
 final class CommandWithoutHandler
 {

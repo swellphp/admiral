@@ -18,6 +18,7 @@ namespace SwellPhp\Admiral\Example\Handler\Dependency;
 
 /**
  * Dummy class to serve as an example command handler dependency.
+ *
  */
 final class ListOfPosts
 {
