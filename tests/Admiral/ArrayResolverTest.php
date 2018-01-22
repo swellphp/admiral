@@ -94,7 +94,7 @@ class ArrayResolverTest extends TestCase
     }
 
 
-    public function it_resolve_handler_dependencies()
+    public function it_resolve_handler_dependencies_from_instance_of_it()
     {
 
     }

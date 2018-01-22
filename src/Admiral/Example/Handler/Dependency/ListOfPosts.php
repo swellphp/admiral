@@ -13,17 +13,13 @@
  * @version   1.0 Initial Release
  */
 
-namespace SwellPhp\Admiral\Example\Handler;
-
-use SwellPhp\Admiral\CommandHandler;
-use SwellPhp\Admiral\Example\Handler\Dependencies\ListOfPosts;
+namespace SwellPhp\Admiral\Example\Handler\Dependency;
 
 
 /**
- * The command handler for drafting a new blog post.
- *
+ * Dummy class to serve as an example command handler dependency.
  */
-final class DraftNewBlogPost implements CommandHandler
+final class ListOfPosts
 {
 
 }

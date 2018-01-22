@@ -33,6 +33,12 @@ final class ArrayResolver implements CommandHandlerResolver
 
 
     /**
+     * @var array
+     */
+    protected $handlersDependencies;
+
+
+    /**
      * ArrayResolver constructor.
      *
      * @param array $handlers
@@ -57,6 +63,10 @@ final class ArrayResolver implements CommandHandlerResolver
         $handler = $this->handlers[get_class($command)];
 
         try {
+/*            $dependencies = [];
+            if ($this->hasDependencies($handler)) {
+                $dependencies = $this->resolveDependencies($handler);
+            }*/
             $handler = new $handler();
         } catch (\Throwable $exception) {
             throw new CommandHandlerNotFound(
@@ -64,6 +74,33 @@ final class ArrayResolver implements CommandHandlerResolver
             );
         }
         return $handler;
+    }
+
+
+
+    protected function resolveDependencies(
+        string $commandHandler
+    ): array {
+
+        $dependencies = [];
+        foreach (
+            $this->handlersDependencies[$commandHandler] as $handlersDependency
+        ) {
+            $dependencies[] = $handlersDependency;
+        }
+        return $dependencies;
+    }
+
+
+    /**
+     * Checks if a handler has dependencies.
+     *
+     * @param string $commandHandler
+     * @return bool
+     */
+    protected function hasDependencies(string $commandHandler) : bool
+    {
+        return array_key_exists($commandHandler, $this->handlersDependencies);
     }
 
 
@@ -88,6 +125,37 @@ final class ArrayResolver implements CommandHandlerResolver
      */
     protected function setHandlers(array $handlers)
     {
-        $this->handlers = $handlers;
+        $registeredHandlers = [];
+        foreach ($handlers as $command => $handler) {
+            if (is_array($handler)) {
+                foreach ($handler as $index => $dependencies) {
+                    $registeredHandlers[$command] = $index;
+                    $this->setHandlersDependencies($index, $dependencies);
+                }
+            } else {
+                $registeredHandlers[$command] = $handler;
+            }
+        }
+        $this->handlers = $registeredHandlers;
+
     }
+
+
+    /**
+     * Sets the HandlersDependencies.
+     *
+     * @param string $commandHandler
+     * @param array $dependencies
+     */
+    protected function setHandlersDependencies(
+        string $commandHandler,
+        array $dependencies
+    ) {
+        $handlerDependencies = [];
+        foreach ($dependencies as $dependency) {
+             $handlerDependencies[] = $dependency;
+        }
+        $this->handlersDependencies[$commandHandler] = $handlerDependencies;
+    }
+
 }
