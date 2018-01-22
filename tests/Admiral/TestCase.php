@@ -15,6 +15,9 @@
 
 namespace SwellPhp\Admiral\Test;
 
+use SwellPhp\Admiral\ArrayResolver;
+use SwellPhp\Admiral\CommandHandlerResolver;
+
 /**
  * An extensible test case.
  */
@@ -28,11 +31,18 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
 
     /**
+     * @var CommandHandlerResolver
+     */
+    protected $resolver;
+
+
+    /**
      * Sets up the test.
      *
      */
     public function setUp()
     {
         $this->handlers = include __DIR__ . '/Examples/command_handlers.php';
+        $this->resolver = new ArrayResolver($this->handlers);
     }
 }
