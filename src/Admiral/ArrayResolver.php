@@ -66,7 +66,6 @@ final class ArrayResolver implements CommandHandlerResolver
         $dependencies = [];
         if ($this->hasDependencies($handler)) {
             $dependencies = $this->resolveDependencies($handler);
-            $handler = new $handler(...$dependencies);
         }
         $handler = new $handler(...$dependencies);
 
